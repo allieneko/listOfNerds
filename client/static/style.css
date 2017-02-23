@@ -1,0 +1,43 @@
+body {
+    background-color: hotpink;
+    text-align: center;
+}
+a {
+    color: black;
+}
+#header {
+    background-color: limegreen;
+    color: white;
+    padding: 0px;
+    width: 100%;
+    font-weight: bold;
+}
+
+div {
+    background-color: white;
+    border: 1px solid black;
+    margin: auto;
+    width: 60%;
+    padding: 30px;
+}
+
+table {
+    border: 2px solid black;
+    width: 400px;
+    margin: auto;
+    }
+
+th {
+    background: limegreen;
+    width: 250px;
+    }
+tr:nth-child(even) {
+    background: hotpink
+    }
+tr:nth-child(odd) {
+    background: #FFF
+    }
+
+td {
+    text-align: center;
+}

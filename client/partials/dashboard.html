@@ -1,0 +1,45 @@
+<div ng-controller="nerdController">
+    <div id="header">
+        <p>Welcome, {{currentuser.name}}! <a href="/logout">Logout</a></p>
+    </div>
+    <h1>List of Nerds</h1>
+    <h3><a href="#!/add">Add a nerd</a></h3>
+    <h3>Active Nerds</h3>
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Power</th>
+            <th>Likes</th>
+            <th>Action</th>
+            <th>Update Status</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="nerd in nerds | filter: { status: 'Active'} : true | orderBy: '-likes' track by $index">
+                <td>{{ nerd.name }}</td>
+                <td>{{ nerd.powers }}</td>
+                <td>{{ nerd.likes }}</td>
+                <td><a href="/like/{{nerd._id}}">Like This Nerd</a></td>
+                <td><a href="/update/{{nerd._id}}">{{ nerd.status }}</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>Inactive Nerds</h3>
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Power</th>
+            <th>Likes</th>
+            <th>Action</th>
+            <th>Update Status</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="nerd in nerds | filter: { status: 'Inactive'} : true | orderBy: '-likes' track by $index">
+                <td>{{ nerd.name }}</td>
+                <td>{{ nerd.powers }}</td>
+                <td>{{ nerd.likes }}</td>
+                <td><a href="/like/{{nerd._id}}">Like This Nerd</a></td>
+                <td><a href="/update/{{nerd._id}}">{{ nerd.status }}</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
