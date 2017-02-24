@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
     models_path = path.join(__dirname +'./../models');
     
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/heroes');
+mongoose.connect('mongodb://localhost/beltexam');
 
 fs.readdirSync(models_path).forEach(function(file){
 	if(file.indexOf('.js') >= 0){

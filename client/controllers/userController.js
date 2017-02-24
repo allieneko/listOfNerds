@@ -1,5 +1,8 @@
-app.controller('userController', function ($scope, $location, $routeParams, timeAgo, nowTime, userFactory, nerdFactory) {
+app.controller('userController', function ($scope, $location, $routeParams, timeAgo, nowTime, userFactory, itemFactory) {
 
+    userFactory.getUsers(function(data) {
+        $scope.users = data.users;
+    })
 
     userFactory.check(function(data) {
         // console.log("Checking user")
@@ -24,4 +27,15 @@ app.controller('userController', function ($scope, $location, $routeParams, time
         } else {
             userFactory.register($scope.user)
         }
-    }});
+
+    }
+
+if ($routeParams.name) {
+        userFactory.getOneUser($routeParams.name, function (data) {
+            // console.log($routeParams.name)
+            // console.log("route?")
+            $scope.user = data;
+            // console.log(data)
+        })}
+}
+);

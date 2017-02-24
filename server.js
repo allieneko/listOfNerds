@@ -9,7 +9,7 @@ app.use(express.static(path.join(__dirname, '/client')));
 app.use(express.static(path.join(__dirname, '/node_modules')));
 app.use(bp.json());
 app.use(session({
-    secret: 'team nerd activate',
+    secret: 'thisisasecretwordomg',
     resave: false,
     saveUninitialized: true
 }));

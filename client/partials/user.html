@@ -1,17 +1,10 @@
-    <div id="header">
-        <p>Welcome, {{currentuser.name}}! <a href="/logout">Logout</a></p>
-    </div>
+<div id="header">
+    <p>Welcome, {{currentuser.name}}! <a href="/logout">Logout</a> <a href="#!/dashboard">Dashboard</a></p>
+</div>
 <div ng-controller="itemController">
 
-    <h1>Add an Item to Your Bucket List</h1>
-    <p style="color: hotpink;" ng-repeat='error in errors track by $index'>{{error}}</p>
-    <form ng-submit='addItem()'>
-        I'd like to <input type="text" placeholder="Title" ng-model="newItem.title"> which means
-        <input type="text" placeholder="Description" ng-model="newItem.description"> with
-        <select ng-model="newItem.friend" ng-options="user.name for user in users | filter: { name: '!' + currentuser.name }">{{user.name}}</select>
-        <input type="submit" value="Submit">
-    </form>
-    <h3>Active Items</h3>
+    <h1>{{ user.items[0].name }}'s Bucket List</h1>
+    <h3>Pending</h3>
     <table>
         <thead>
             <th>User</th>
@@ -21,8 +14,10 @@
             <th>Mark Complete</th>
         </thead>
         <tbody>
-            <tr ng-repeat="item in items | filter: { status: 'Active'} : true track by $index">
-                <td>{{ item._user[0].name }} {{ item._user[1].name }}</td>
+            <tr ng-repeat="item in items | filter: {name: item._user[0].name, status: 'Active' } : true track by $index">
+                <td>
+                    <p ng-repeat="things in item track by $index">{{ things[0].name }} {{ things[1].name}}</p>
+                </td>
                 <td>{{ item.title }}</td>
                 <td>{{ item.description }}</td>
                 <td>{{ item.createdAt | date:'MMM dd yyyy' }}</td>
@@ -32,7 +27,7 @@
             </tr>
         </tbody>
     </table>
-    <h3>Inactive Items</h3>
+    <h3>Done</h3>
     <table>
         <thead>
             <th>User</th>
@@ -48,11 +43,9 @@
                 <td>{{ item.description }}</td>
                 <td>{{ item.createdAt | date:'MMM dd yyyy' }}</td>
                 <td>
-                        <input type="checkbox" ng-model="status" ng-checked="checked" ng-change="updateStatus(item._id)">
+                    <input type="checkbox" ng-model="status" ng-checked="checked" ng-change="updateStatus(item._id)">
                 </td>
             </tr>
         </tbody>
     </table>
-    <h3>All Users</h3>
-    <span ng-repeat="user in users track by $index"><a href="/#!/user/{{user._id}}">{{user.name}} </a></span>
 </div>

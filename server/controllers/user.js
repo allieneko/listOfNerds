@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
-var Nerd = mongoose.model('Nerd');
+var Item = mongoose.model('Item');
 
 module.exports = (function () {
     return {
@@ -24,18 +24,33 @@ module.exports = (function () {
                 }
             })
         },
-        check: function(req, res) {
-            if(!req.session || !req.session.user) {
+        check: function (req, res) {
+            if (!req.session || !req.session.user) {
                 // console.log("Null")
-                res.send({status: false})
+                res.send({ status: false })
                 // res.redirect('/')
             } else {
                 // console.log("User")
-                res.send({status: true, user: req.session.user} )
+                res.send({ status: true, user: req.session.user })
             }
         },
+        getUsers: function (req, res) {
+            User.find({})
+                .populate('_items')
+                .exec(function (err, data) {
+                    res.json({ users: data })
+                })
+        },
+        getOneUser: function (req, res) {
+            // console.log(req.params.name)
+            User.find({ _id: req.params.name })
+                .populate('_items')
+                .exec(function (err, data) {
+                    res.json({ items: data })
+                })
+        },
 
-        logout: function(req, res) {
+        logout: function (req, res) {
             req.session.destroy();
             res.redirect('/');
         }

@@ -10,8 +10,8 @@ app.config(function($routeProvider) {
         templateUrl: 'partials/dashboard.html',
         controller: 'userController'
     })
-    .when('/add', {
-        templateUrl: 'partials/add.html',
+    .when('/user/:name', {
+        templateUrl: 'partials/user.html',
         controller: 'userController'
     })
 

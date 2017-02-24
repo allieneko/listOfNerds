@@ -1,14 +1,14 @@
-<div ng-controller="nerdController">
+<div ng-controller="itemController">
     <div id="header">
         <p>Welcome, {{currentuser.name}}! <a href="/logout">Logout</a></p>
     </div>
-<h1>Add a Hero!</h1>
+<h1>Add an Item to Your Bucket List</h1>
 
     <div>
         <p style="color: hotpink;" ng-repeat='error in errors track by $index'>{{error}}</p>
-        <form ng-submit='addNerd()'>
-            Nerd Name: <input type="text" placeholder="Name" ng-model="newNerd.name">
-            Powers: <input type="text" placeholder="Powers" ng-model="newNerd.powers">
+        <form ng-submit='addItem()'>
+            Title: <input type="text" placeholder="Title" ng-model="newItem.title">
+            Description: <input type="text" placeholder="Description" ng-model="newItem.description">
             <input type="submit" value="Submit">
         </form>
     </div>
